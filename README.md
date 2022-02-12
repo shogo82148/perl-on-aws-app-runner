@@ -1,14 +1,17 @@
 # perl-on-aws-app-runner
-Run PSGI app on [AWS App Runner](https://aws.amazon.com/apprunner/)
+An example of running PSGI app on [AWS App Runner](https://aws.amazon.com/apprunner/)
 
-## Build the Image
+## Run the Basic Image
+
+### Build the Basic Image
 
 ```console
 git clone git@github.com:shogo82148/perl-on-aws-app-runner.git
-docker build -t perl-test .
+cd perl-on-aws-app-runner/basic
+docker build -t perl-basic-test .
 ```
 
-## Push the Image to ECR
+### Push the Image to ECR
 
 Open [ECR (Amazon Elastic Container Registry) service on AWS Management Console](https://console.aws.amazon.com/apprunner/home) and create a new ECR Repository.
 And then, push the image to the repository.
@@ -19,7 +22,7 @@ docker tag perl-test:latest 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pe
 docker push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/perl-test:latest
 ```
 
-## Create a New Service on AWS App Runner
+### Create a New Service on AWS App Runner
 
 Open [AWS App Runner service on AWS Management Console](https://console.aws.amazon.com/apprunner/home) and create a new service.
 
