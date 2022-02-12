@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=hello-perl
+      - MYSQL_DATABASE=hello-perl
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=hello-perl
+    healthcheck:
+      test: "mysqladmin ping"
+      interval: 1s
+      retries: 120
