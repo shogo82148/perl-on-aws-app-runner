@@ -24,5 +24,6 @@ services:
       - MYSQL_ROOT_PASSWORD=hello-perl
     healthcheck:
       test: "mysqladmin ping"
-      interval: 1s
-      retries: 120
+      interval: 30s
+      start_period: 30s
+      retries: 3
